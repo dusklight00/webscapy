@@ -11,8 +11,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 import undetected_chromedriver as uc
 
 class Webscapy:
-    def __init__(self):
-        pass
+    def __init__(self, headless = True, executable_path = None, remote_url = None, undetected = False, version = None):
+        self.setup_driver(headless, executable_path, remote_url, undetected, version)
 
     def setup_driver(self, headless = True, executable_path = None, remote_url = None, undetected = False, version = None):
         if remote_url is not None:
