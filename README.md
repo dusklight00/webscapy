@@ -75,7 +75,7 @@ driver.get("https://google.com")
 
 Following are the ways to interact with DOM Element
 
-1. Load for the element to load
+1. Wait for the element to load
 
 ```python
 ELEMENT_XPATH = "..."
