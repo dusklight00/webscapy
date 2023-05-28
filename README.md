@@ -23,3 +23,95 @@ You can install Webscapy using pip, the Python package manager. Open your comman
 ```python
 pip install webscapy
 ```
+
+## Getting Started
+
+Following are the ways to create a driver
+
+1. Simple Driver (headless)
+
+```python
+from webscapy import Webscapy
+
+driver = Webscapy()
+
+driver.get("https://google.com")
+```
+
+2. Turn off headless
+
+```python
+from webscapy import Webscapy
+
+driver = Webscapy(headless=False)
+
+driver.get("https://google.com")
+```
+
+3. Make the driver undetectable
+
+```python
+from webscapy import Webscapy
+
+driver = Webscapy(headless=False, undetectable=True)
+
+driver.get("https://google.com")
+```
+
+4. Connect to a remote browser
+
+```python
+from webscapy import Webscapy
+
+REMOTE_URL = "..."
+driver = Webscapy(remote_url=REMOTE_URL)
+
+driver.get("https://google.com")
+```
+
+## Element Interaction
+
+Following are the ways to interact with DOM Element
+
+1. Load for the element to load
+
+```python
+ELEMENT_XPATH = "..."
+
+driver.load_wait(ELEMENT_XPATH)
+```
+
+2. Load the element
+
+```python
+ELEMENT_XPATH = "..."
+
+element = driver.load_element(ELEMENT_XPATH)
+```
+
+3. Interact / Click the element
+
+```python
+ELEMENT_XPATH = "..."
+
+element = driver.load_element(ELEMENT_XPATH)
+element.click()
+```
+
+## Network Activity Data
+
+You can get network activity data after waiting for a while using commands like `time.sleep(...)`
+
+```python
+network_data = driver.get_network_data()
+
+print(network_data)
+```
+
+## Close the driver
+
+Always close the driver after using it to save memory, or avoid memory leaks
+
+```python
+driver.close()
+```
