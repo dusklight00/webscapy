@@ -2,3 +2,4 @@ __pycache__
 selpy.egg-info
 dist
 build
+test.py

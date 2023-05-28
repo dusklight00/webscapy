@@ -7,17 +7,39 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_manager.chrome import ChromeDriverManager
+import undetected_chromedriver as uc
 
 class Webscapy:
     def __init__(self):
         pass
 
-    def setup_driver(self, headless = True, executable_path = None, remote_url = None):
+    def setup_driver(self, headless = True, executable_path = None, remote_url = None, undetected = False, version = None):
         if remote_url is not None:
             self.create_remote_driver(remote_url)
         else:
-            self.create_offline_driver(headless, executable_path)
+            if undetected:
+                self.create_undetected_driver(headless, executable_path, version)
+            else:
+                self.create_offline_driver(headless, executable_path)
     
+    def create_undetected_driver(self, headless = True, executable_path = None, version = None):
+        if executable_path is None:
+            chrome_manager = ChromeDriverManager()
+            executable_path = chrome_manager.install()
+            version = int(chrome_manager.driver.get_browser_version_from_os().split(".")[0])
+        elif version is None:
+            raise Exception("Version of the executable path is not provided")
+        options = uc.ChromeOptions()
+        options.headless = headless
+        self.driver = uc.Chrome(
+            use_subprocess=True,
+            driver_executable_path=executable_path,
+            version_main=version,
+            options=options
+        )
+
+
     def create_remote_driver(self, remote_url = None):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.set_capability("browserVersion", "67")
