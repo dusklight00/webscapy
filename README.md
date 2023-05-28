@@ -10,6 +10,10 @@ Webscapy is a Python package that extends the capabilities of the Selenium frame
 
 2. <b>Undetected Mode:</b> Webscapy includes built-in mechanisms to bypass anti-bot measures, including Cloudflare protection. It provides an undetected mode that reduces the chances of detection and allows for seamless scraping even from websites with strict security measures.
 
+   | Undetected Mode (Off) | Undetected Mode (On) |
+   | :-------------------: | :------------------: |
+   |        Image 1        |       Image 2        |
+
 3. <b>Headless Browsers:</b> Webscapy supports headless browser operations, allowing you to scrape websites without displaying the browser window. This feature is useful for running scraping tasks in the background or on headless servers.
 
 4. <b>Element Load Waiting:</b> The package offers flexible options for waiting until specific elements are loaded on the web page. You can wait for elements to appear, disappear, or become interactable before performing further actions. This ensures that your scraping script synchronizes with the dynamic behavior of websites.
