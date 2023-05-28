@@ -12,7 +12,7 @@ Webscapy is a Python package that extends the capabilities of the Selenium frame
 
    | Undetected Mode (Off) | Undetected Mode (On) |
    | :-------------------: | :------------------: |
-   |        Image 1        |       Image 2        |
+   |        ![image](https://github.com/dusklight00/webscapy/assets/71203637/d8325500-3793-4f26-b7dd-15e5da7ee100)        |       ![image](https://github.com/dusklight00/webscapy/assets/71203637/7344470a-6924-4556-a72e-a27638e410bd)        |
 
 3. <b>Headless Browsers:</b> Webscapy supports headless browser operations, allowing you to scrape websites without displaying the browser window. This feature is useful for running scraping tasks in the background or on headless servers.
 
