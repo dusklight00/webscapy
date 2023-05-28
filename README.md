@@ -16,6 +16,8 @@ Webscapy is a Python package that extends the capabilities of the Selenium frame
 
 5. <b>Execute JavaScript Code:</b> Webscapy allows you to execute custom JavaScript code within the browser. This feature enables you to interact with JavaScript-based functionalities on web pages, manipulate the DOM, or extract data that is not easily accessible through traditional scraping techniques.
 
+6. <b>Connect with Remote Browsers:</b> SeleniumWebScraper provides a simplified method to connect with remote browsers using just one line of code. This feature allows you to distribute your scraping tasks to remote nodes or cloud-based Selenium Grid infrastructure. By specifying the remote URL, you can easily connect to a remote browser and leverage its capabilities for efficient scraping.
+
 ## Installation
 
 You can install Webscapy using pip, the Python package manager. Open your command-line interface and execute the following command:
