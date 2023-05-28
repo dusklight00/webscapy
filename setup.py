@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="webscapy",
-    version="1.2.2",
+    version="1.3.3",
     description="Selenium built for scraping instead of testing",
     long_description=readme,
     long_description_content_type="text/markdown",
