@@ -3,3 +3,4 @@ selpy.egg-info
 dist
 build
 test.py
+*.egg-info
