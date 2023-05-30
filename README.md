@@ -10,9 +10,9 @@ Webscapy is a Python package that extends the capabilities of the Selenium frame
 
 2. <b>Undetected Mode:</b> Webscapy includes built-in mechanisms to bypass anti-bot measures, including Cloudflare protection. It provides an undetected mode that reduces the chances of detection and allows for seamless scraping even from websites with strict security measures.
 
-   | Undetected Mode (Off) | Undetected Mode (On) |
-   | :-------------------: | :------------------: |
-   |        ![image](https://github.com/dusklight00/webscapy/assets/71203637/d8325500-3793-4f26-b7dd-15e5da7ee100)        |       ![image](https://github.com/dusklight00/webscapy/assets/71203637/7344470a-6924-4556-a72e-a27638e410bd)        |
+   |                                         Undetected Mode (Off)                                          |                                          Undetected Mode (On)                                          |
+   | :----------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: |
+   | ![image](https://github.com/dusklight00/webscapy/assets/71203637/d8325500-3793-4f26-b7dd-15e5da7ee100) | ![image](https://github.com/dusklight00/webscapy/assets/71203637/7344470a-6924-4556-a72e-a27638e410bd) |
 
 3. <b>Headless Browsers:</b> Webscapy supports headless browser operations, allowing you to scrape websites without displaying the browser window. This feature is useful for running scraping tasks in the background or on headless servers.
 
@@ -104,6 +104,15 @@ element = driver.load_element(ELEMENT_XPATH)
 element.click()
 ```
 
+## Execute Javascript Code
+
+You can execute any javascript code on the site using the following method
+
+```python
+code = "..."
+driver.execute_script(code)
+```
+
 ## Network Activity Data
 
 You can get network activity data after waiting for a while using commands like `time.sleep(...)`
@@ -112,6 +121,26 @@ You can get network activity data after waiting for a while using commands like 
 network_data = driver.get_network_data()
 
 print(network_data)
+```
+
+## Cookie Handling
+
+You can add cookies using the following method
+
+1. Add a single cookie
+
+```python
+cookie = {
+   "name": "cookie1",
+   "value": "value1"
+}
+driver.add_cookie(cookie)
+```
+
+2. Import cookie from JSON
+
+```
+driver.load_cookie_json("cookie.json")
 ```
 
 ## Close the driver
