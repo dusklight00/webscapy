@@ -137,7 +137,19 @@ cookie = {
 driver.add_cookie(cookie)
 ```
 
-2. Import cookie from JSON
+2. Get a single cookie
+
+```python
+driver.get_cookie("cookie1")
+```
+
+3. Delete a single cookie
+
+```python
+driver.delete_cookie("cookie1")
+```
+
+4. Import cookie from JSON
 
 ```
 driver.load_cookie_json("cookie.json")

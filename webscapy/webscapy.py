@@ -117,10 +117,37 @@ class Webscapy:
     def add_cookie(self, cookie):
         self.driver.add_cookie(cookie)
 
+    def get_cookie(self, name):
+        return self.driver.get_cookie(name)
+    
+    def delete_cookie(self, name):
+        self.driver.delete_cookie(name)
+
+    def cookie_editor_parser(self, cookie):
+        if cookie["sameSite"] == "lax":
+            cookie["sameSite"] = "Lax"
+        if cookie["sameSite"] == "no_restriction":
+            cookie["sameSite"] = "None"
+        if cookie["sameSite"] == "strict":
+            cookie["sameSite"] = "Strict"
+        return cookie
+
+    def is_host_cookie(self, cookie):
+        cookie_name = cookie["name"]
+        if cookie_name.startswith("__Host"):
+            return True
+        return False
+
     def load_cookie_json(self, path):
         file = open(path, "r")
         cookies = json.load(file)
         for cookie in cookies:
+            cookie = self.cookie_editor_parser(cookie)
+            cookie_name = cookie["name"]
+            if self.get_cookie(cookie_name) is not None:
+                self.delete_cookie(cookie_name)
+            if self.is_host_cookie(cookie):
+                del cookie["domain"]
             self.add_cookie(cookie)
 
     def close(self):
