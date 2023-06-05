@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="webscapy",
-    version="1.4.4",
+    version="1.4.5",
     description="Selenium built for scraping instead of testing",
     long_description=readme,
     long_description_content_type="text/markdown",
@@ -15,5 +15,10 @@ setup(
     project_urls={
         "Documentation": "https://pypi.org/project/webscapy/",
         "Source": "https://pypi.org/project/webscapy/",
-    }
+    },
+    install_requires=[
+        "selenium",
+        "webdriver_manager",
+        "uc-browser"
+    ]
 )
