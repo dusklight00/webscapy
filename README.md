@@ -91,6 +91,18 @@ driver.load_wait(type, selector)
 element = driver.load_element(type, selector)
 ```
 
+3. Load all the possible instance of the selector (outputs an array)
+
+```python
+elements = driver.load_elements(type, selector)
+
+# Exmaple
+elements = driver.load_elements("tag-name", "p")
+
+# Output:
+# [elem1, elem2, elem3, ...]
+```
+
 3. Wait and load element
 
 ```python
