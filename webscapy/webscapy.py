@@ -81,9 +81,7 @@ class Webscapy:
         else:
             self.driver = webdriver.Chrome(service=service, options=chrome_options)
 
-    def load_wait(self, type, selector):
-        delay = 9999
-
+    def load_wait(self, type, selector, timeout = 9999):
         selector_obj = None
         if type == "id":
             selector_obj = By.ID
@@ -106,7 +104,7 @@ class Webscapy:
             return False
 
         try:
-            WebDriverWait(self.driver, delay).until(
+            WebDriverWait(self.driver, timeout).until(
                 EC.presence_of_element_located((selector_obj, selector))
             )
             return True
@@ -114,7 +112,6 @@ class Webscapy:
             return False
 
     def load_element(self, type, selector):
-        print(type)
         if type == "id":
             return self.driver.find_element(By.ID, selector)
         if type == "name":
@@ -133,8 +130,8 @@ class Webscapy:
             return self.driver.find_element(By.CSS_SELECTOR, selector)
         raise TypeError(f"Type {type} is not a valid type")
 
-    def wait_load_element(self, type, selector):
-        self.load_wait(type, selector)
+    def wait_load_element(self, type, selector, timeout = 9999):
+        self.load_wait(type, selector, timeout)
         return self.load_element(type, selector)
 
     def get(self, url):
