@@ -95,7 +95,15 @@ ELEMENT_XPATH = "..."
 element = driver.load_element(ELEMENT_XPATH)
 ```
 
-3. Interact / Click the element
+3. Wait and load element
+
+```python
+ELEMENT_XPATH = "..."
+
+element = driver.wait_load_element(ELEMENT_XPATH)
+```
+
+4. Interact / Click the element
 
 ```python
 ELEMENT_XPATH = "..."

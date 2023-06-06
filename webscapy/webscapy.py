@@ -94,6 +94,10 @@ class Webscapy:
     def load_element(self, xpath):
         return self.driver.find_element("xpath", xpath)
 
+    def wait_load_element(self, xpath):
+        self.load_wait(xpath)
+        return self.load_element(xpath)
+
     def get(self, url):
         self.driver.get(url)
 
