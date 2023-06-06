@@ -130,6 +130,25 @@ class Webscapy:
             return self.driver.find_element(By.CSS_SELECTOR, selector)
         raise TypeError(f"Type {type} is not a valid type")
 
+    def load_elements(self, type, selector):
+        if type == "id":
+            return self.driver.find_elements(By.ID, selector)
+        if type == "name":
+            return self.driver.find_elements(By.NAME, selector)
+        if type == "xpath":
+            return self.driver.find_elements(By.XPATH, selector)
+        if type == "link-text":
+            return self.driver.find_elements(By.LINK_TEXT, selector)
+        if type == "partial-link-text":
+            return self.driver.find_elements(By.PARTIAL_LINK_TEXT, selector)
+        if type == "tag-name":
+            return self.driver.find_elements(By.TAG_NAME, selector)
+        if type == "class-name":
+            return self.driver.find_elements(By.CLASS_NAME, selector)
+        if type == "css-selector":
+            return self.driver.find_elements(By.CSS_SELECTOR, selector)
+        raise TypeError(f"Type {type} is not a valid type")
+
     def wait_load_element(self, type, selector, timeout = 9999):
         self.load_wait(type, selector, timeout)
         return self.load_element(type, selector)
