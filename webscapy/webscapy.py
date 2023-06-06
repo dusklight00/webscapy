@@ -81,22 +81,61 @@ class Webscapy:
         else:
             self.driver = webdriver.Chrome(service=service, options=chrome_options)
 
-    def load_wait(self, xpath):
+    def load_wait(self, type, selector):
         delay = 9999
+
+        selector_obj = None
+        if type == "id":
+            selector_obj = By.ID
+        if type == "name":
+            selector_obj = By.NAME
+        if type == "xpath":
+            selector_obj = By.XPATH
+        if type == "link-text":
+            selector_obj = By.LINK_TEXT
+        if type == "partial-link-text":
+            selector_obj = By.PARTIAL_LINK_TEXT
+        if type == "tag-name":
+            selector_obj = By.TAG_NAME
+        if type == "class-name":
+            selector_obj = By.CLASS_NAME
+        if type == "css-selector":
+            selector_obj = By.CSS_SELECTOR
+
+        if selector_obj == None:
+            return False
+
         try:
             WebDriverWait(self.driver, delay).until(
-                EC.presence_of_element_located((By.XPATH, xpath))
+                EC.presence_of_element_located((selector_obj, selector))
             )
             return True
         except TimeoutException:
             return False
 
-    def load_element(self, xpath):
-        return self.driver.find_element("xpath", xpath)
+    def load_element(self, type, selector):
+        print(type)
+        if type == "id":
+            return self.driver.find_element(By.ID, selector)
+        if type == "name":
+            return self.driver.find_element(By.NAME, selector)
+        if type == "xpath":
+            return self.driver.find_element(By.XPATH, selector)
+        if type == "link-text":
+            return self.driver.find_element(By.LINK_TEXT, selector)
+        if type == "partial-link-text":
+            return self.driver.find_element(By.PARTIAL_LINK_TEXT, selector)
+        if type == "tag-name":
+            return self.driver.find_element(By.TAG_NAME, selector)
+        if type == "class-name":
+            return self.driver.find_element(By.CLASS_NAME, selector)
+        if type == "css-selector":
+            return self.driver.find_element(By.CSS_SELECTOR, selector)
+        raise TypeError(f"Type {type} is not a valid type")
 
-    def wait_load_element(self, xpath):
-        self.load_wait(xpath)
-        return self.load_element(xpath)
+    def wait_load_element(self, type, selector):
+        self.load_wait(type, selector)
+        return self.load_element(type, selector)
 
     def get(self, url):
         self.driver.get(url)
