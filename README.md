@@ -82,34 +82,69 @@ Following are the ways to interact with DOM Element
 1. Wait for the element to load
 
 ```python
-ELEMENT_XPATH = "..."
-
-driver.load_wait(ELEMENT_XPATH)
+driver.load_wait(type, selector)
 ```
 
 2. Load the element
 
 ```python
-ELEMENT_XPATH = "..."
-
-element = driver.load_element(ELEMENT_XPATH)
+element = driver.load_element(type, selector)
 ```
 
 3. Wait and load element
 
 ```python
-ELEMENT_XPATH = "..."
-
-element = driver.wait_load_element(ELEMENT_XPATH)
+element = driver.wait_load_element(type, selector)
 ```
 
 4. Interact / Click the element
 
 ```python
-ELEMENT_XPATH = "..."
-
-element = driver.load_element(ELEMENT_XPATH)
+element = driver.load_element(type, selector)
 element.click()
+```
+
+## Different Type of Selectors
+
+Take the following sample HTML code as example
+
+```html
+<html>
+  <body>
+    <h1>Welcome</h1>
+    <p>Site content goes here.</p>
+    <form id="loginForm">
+      <input name="username" type="text" />
+      <input name="password" type="password" />
+      <input name="continue" type="submit" value="Login" />
+      <input name="continue" type="button" value="Clear" />
+    </form>
+    <p class="content">Site content goes here.</p>
+    <a href="continue.html">Continue</a>
+    <a href="cancel.html">Cancel</a>
+  </body>
+</html>
+```
+
+Following are different selector types
+
+|       Type        |         Example         |
+| :---------------: | :---------------------: |
+|        id         |       `loginForm`       |
+|       name        | `username` / `password` |
+|       xpath       |  `/html/body/form[1]`   |
+|     link-text     |       `Continue`        |
+| partial-link-text |         `Conti`         |
+|     tag-name      |          `h1`           |
+|    class-name     |        `content`        |
+|   css-selector    |       `p.content`       |
+
+Following is some usecase examples
+
+```python
+content = driver.wait_load_element("css-selector", 'p.content')
+content = driver.wait_load_element("class-name", 'content')
+content = driver.wait_load_element("tag-name", 'p')
 ```
 
 ## Execute Javascript Code
