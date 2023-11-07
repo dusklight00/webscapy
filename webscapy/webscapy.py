@@ -9,6 +9,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from webdriver_manager.chrome import ChromeDriverManager
 import undetected_chromedriver as uc
+import chromedriver_autoinstaller
 import json
 
 
@@ -73,7 +74,8 @@ class Webscapy:
         chrome_options.add_argument("--disable-gpu")
         if headless:
             chrome_options.add_argument("--headless")
-        service = Service(ChromeDriverManager().install())
+        chromedriver_autoinstaller.install()
+        service = Service()
         if executable_path is not None:
             self.driver = webdriver.Chrome(
                 service=service, options=chrome_options, executable_path=executable_path
@@ -81,7 +83,7 @@ class Webscapy:
         else:
             self.driver = webdriver.Chrome(service=service, options=chrome_options)
 
-    def load_wait(self, type, selector, timeout = 9999):
+    def load_wait(self, type, selector, timeout=9999):
         selector_obj = None
         if type == "id":
             selector_obj = By.ID
@@ -149,7 +151,7 @@ class Webscapy:
             return self.driver.find_elements(By.CSS_SELECTOR, selector)
         raise TypeError(f"Type {type} is not a valid type")
 
-    def wait_load_element(self, type, selector, timeout = 9999):
+    def wait_load_element(self, type, selector, timeout=9999):
         self.load_wait(type, selector, timeout)
         return self.load_element(type, selector)
 
@@ -178,7 +180,7 @@ class Webscapy:
 
     def get_cookie(self, name):
         return self.driver.get_cookie(name)
-    
+
     def delete_cookie(self, name):
         self.driver.delete_cookie(name)
 
@@ -208,6 +210,9 @@ class Webscapy:
             if self.is_host_cookie(cookie):
                 del cookie["domain"]
             self.add_cookie(cookie)
+
+    def reload(self):
+        self.driver.refresh()
 
     def close(self):
         self.driver.close()
